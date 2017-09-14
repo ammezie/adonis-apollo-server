@@ -1,0 +1,37 @@
+{
+  "name": "adonis-apollo-server",
+  "version": "1.0.0",
+  "description": "Production-ready Node.js GraphQL server for AdonisJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "GraphQL",
+    "Apollo",
+    "Server",
+    "AdonisJS",
+    "JavaScript"
+  ],
+  "author": "Chimezie Enyinnaya <meziemichael@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "apollo-server-core": "^1.1.0",
+    "apollo-server-module-graphiql": "^1.1.2",
+    "graphql": "^0.10.5"
+  },
+  "devDependencies": {
+    "@adonisjs/fold": "^4.0.4",
+    "@adonisjs/sink": "^1.0.13",
+    "semver": "^5.4.1",
+    "standard": "^10.0.3"
+  },
+  "standard": {
+    "globals": [
+      "use"
+    ]
+  },
+  "peerDependencies": {
+    "graphql": "^0.9.0 || ^0.10.1"
+  }
+}
