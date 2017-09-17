@@ -34,6 +34,19 @@ class AdonisApollo {
                     .send(error.message)
         })
     }
+
+    graphiql (options) {
+        if (!options.graphiql) {
+            throw new Error('Apollo Server GraphiQL requires options.');
+        }
+
+        const query = request.originalUrl()
+
+        GraphiQL.resolveGraphiQLString(query, options.graphiql, request).then(graphiqlString => {
+            response.header('Content-Type', 'text/html')
+                    .send(graphiqlString)
+        }, error => response.send(error))
+    }
 }
 
 module.expects = AdonisApollo
