@@ -17,8 +17,7 @@
   "license": "MIT",
   "dependencies": {
     "apollo-server-core": "^1.1.0",
-    "apollo-server-module-graphiql": "^1.1.2",
-    "graphql": "^0.10.5"
+    "apollo-server-module-graphiql": "^1.1.2"
   },
   "devDependencies": {
     "@adonisjs/fold": "^4.0.4",
@@ -30,8 +29,5 @@
     "globals": [
       "use"
     ]
-  },
-  "peerDependencies": {
-    "graphql": "^0.9.0 || ^0.10.1"
   }
 }
