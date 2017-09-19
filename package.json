@@ -21,7 +21,6 @@
   },
   "devDependencies": {
     "@adonisjs/fold": "^4.0.4",
-    "@adonisjs/sink": "^1.0.13",
     "semver": "^5.4.1",
     "standard": "^10.0.3"
   },

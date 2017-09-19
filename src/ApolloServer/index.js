@@ -1,21 +1,26 @@
 'use strict'
 
+/**
+ * adonis-apollo-server
+ *
+ * (c) Chimezie Enyinnaya <meziemichael@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+*/
+
 const { HttpQueryError, runHttpQuery } = require('apollo-server-core')
 const GraphiQL = require('apollo-server-module-graphiql')
 
-class AdonisApollo {
-    graphql (options) {
-        if (!options.graphql) {
+class ApolloServer {
+    graphql (options, request, response) {
+        if (!options) {
             throw new Error('Apollo Server requires options.');
-        }
-
-        if (arguments.length > 1) {
-            throw new Error("Apollo Server expects exactly one argument, got " + arguments.length);
         }
 
         return runHttpQuery([request], {
             method: request.method(),
-            options: options.graphql,
+            options: options,
             query: request.method() === 'POST' ? request.post() : request.get()
         }).then((gqlResponse) => {
             return response.json(gqlResponse)
@@ -35,18 +40,18 @@ class AdonisApollo {
         })
     }
 
-    graphiql (options) {
-        if (!options.graphiql) {
+    graphiql (options, request, response) {
+        if (!options) {
             throw new Error('Apollo Server GraphiQL requires options.');
         }
 
         const query = request.originalUrl()
 
-        GraphiQL.resolveGraphiQLString(query, options.graphiql, request).then(graphiqlString => {
+        return GraphiQL.resolveGraphiQLString(query, options, request).then(graphiqlString => {
             response.header('Content-Type', 'text/html')
                     .send(graphiqlString)
         }, error => response.send(error))
     }
 }
 
-module.expects = AdonisApollo
+module.exports = ApolloServer
