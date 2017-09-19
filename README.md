@@ -2,7 +2,11 @@
 
 This package integrates Apollo GraphQL Server with the AdonisJS framework. It allows you to use Apollo server in your AdoinsJS app.
 
-## Setup
+## Installation
+
+```bash
+adonis install adonis-apollo-server
+```
 
 ### Registering provider
 
@@ -14,7 +18,11 @@ const providers = [
 ]
 ```
 
-That's all! Now you can use the provider by pulling it from IoC container
+That's all!
+
+## Usage
+
+Now you can use the provider by pulling it from IoC container
 
 ```js
 const ApolloServer = use('ApolloServer')
