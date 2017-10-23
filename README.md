@@ -25,9 +25,35 @@ That's all!
 Now you can use the provider by pulling it from IoC container
 
 ```js
+// start/routes.js
+
+'use strict'
+
+const Route = use('Route')
 const ApolloServer = use('ApolloServer')
+const { makeExecutableSchema } = require('graphql-tools')
 
-ApolloServer.graphql({ schema: schema }, request, response)
+const typeDefs = `
+    type Query {
+        testString: String
+    }
+`
 
-ApolloServer.graphiql({ endpointURL: '/graphql' }, request, response)
+const resolvers = {
+    Query: {
+        testString () {
+            return 'Seems to be working!'
+        }
+    }
+}
+
+const schema = makeExecutableSchema({ typeDefs, resolvers })
+
+Route.route('/graphql', ({ request, response }) => {
+    return ApolloServer.graphql({ schema }, request, response)
+}, ['GET', 'POST'])
+
+Route.get('/graphiql', ({ request, response }) => {
+    return ApolloServer.graphiql({ endpointURL: '/graphql' }, request, response)
+})
 ```
