@@ -2,6 +2,8 @@
 
 This package integrates Apollo GraphQL Server with the AdonisJS framework. It allows you to use Apollo server in your AdoinsJS app.
 
+> **NOTE:** This package requires [@adonisjs/bodyparser](https://github.com/adonisjs/adonis-bodyparser)
+
 ## Installation
 
 ```bash
