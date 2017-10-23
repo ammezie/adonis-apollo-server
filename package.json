@@ -11,7 +11,8 @@
     "Apollo",
     "Server",
     "AdonisJS",
-    "JavaScript"
+    "JavaScript",
+    "Node.js"
   ],
   "author": "Chimezie Enyinnaya <meziemichael@gmail.com>",
   "license": "MIT",

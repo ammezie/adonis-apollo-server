@@ -13,18 +13,20 @@ const { HttpQueryError, runHttpQuery } = require('apollo-server-core')
 const GraphiQL = require('apollo-server-module-graphiql')
 
 class ApolloServer {
-    graphql (options, request, response) {
+    async graphql (options, request, response) {
         if (!options) {
-            throw new Error('Apollo Server requires options.');
+            throw new Error('Apollo Server requires options.')
         }
 
-        return runHttpQuery([request], {
-            method: request.method(),
-            options: options,
-            query: request.method() === 'POST' ? request.post() : request.get()
-        }).then((gqlResponse) => {
+        try {
+            const gqlResponse = await runHttpQuery([request], {
+                method: request.method(),
+                options: options,
+                query: request.method() === 'POST' ? request.post() : request.get()
+            })
+
             return response.json(gqlResponse)
-        }, error => {
+        } catch (error) {
             if ('HttpQueryError' !== error.name) {
                 throw error
             }
@@ -35,22 +37,26 @@ class ApolloServer {
                 })
             }
 
-            response.status(error.status)
+            return response.status(error.status)
                     .send(error.message)
-        })
+        }
     }
 
-    graphiql (options, request, response) {
+    async graphiql (options, request, response) {
         if (!options) {
-            throw new Error('Apollo Server GraphiQL requires options.');
+            throw new Error('Apollo Server GraphiQL requires options.')
         }
 
         const query = request.originalUrl()
 
-        return GraphiQL.resolveGraphiQLString(query, options, request).then(graphiqlString => {
+        try {
+            const graphiqlString = await GraphiQL.resolveGraphiQLString(query, options, request)
+
             response.header('Content-Type', 'text/html')
                     .send(graphiqlString)
-        }, error => response.send(error))
+        } catch (error) {
+            return response.send(error)
+        }
     }
 }
 
