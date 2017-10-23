@@ -1,10 +1,10 @@
 {
   "name": "adonis-apollo-server",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Production-ready Node.js GraphQL server for AdonisJS",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test/apollo-server.spec.js"
   },
   "keywords": [
     "GraphQL",
@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@adonisjs/fold": "^4.0.4",
+    "japa": "^1.0.5",
     "semver": "^5.4.1",
     "standard": "^10.0.3"
   },
