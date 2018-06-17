@@ -35,7 +35,7 @@ class ApolloServer {
                 })
             }
 
-            response.status(error.status)
+            response.status(error.statusCode)
                     .send(error.message)
         })
     }
