@@ -23,7 +23,9 @@ class ApolloServer {
             options: options,
             query: request.method() === 'POST' ? request.post() : request.get()
         }).then((gqlResponse) => {
-            return response.json(gqlResponse)
+            return response
+              .header("content-type", "application/json")
+              .send(gqlResponse)
         }, error => {
             if ('HttpQueryError' !== error.name) {
                 throw error

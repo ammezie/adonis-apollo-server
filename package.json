@@ -1,6 +1,6 @@
 {
   "name": "adonis-apollo-server",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Production-ready Node.js GraphQL server for AdonisJS",
   "main": "index.js",
   "scripts": {
